@@ -180,6 +180,12 @@ impl PlaybackSnapshot {
         self.playing
     }
 
+    /// The current track's URI. (Nanyin addition, not in #1765.)
+    pub fn track_uri(&self) -> Option<String> {
+        self.state
+            .current_track(|track| track.as_ref().map(|track| track.uri.clone()))
+    }
+
     /// The same playback, picked up at `position_ms` and playing or paused as
     /// given instead of where it stood when the session ended.
     ///
