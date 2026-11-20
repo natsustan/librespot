@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [connect] Add `Spirc::restore_playback_reporting` and `RestoreOutcome`; a restore no longer takes playback back from another device that was active when this one registered
 - [connect] Add `PlaybackSnapshot::playing_on`, a position that keeps advancing until the restore is applied
 - [connect] Add `PlaybackSnapshot::track_uri`, the current track of a retained snapshot
 - [docs] Document Android NDK context initialization requirement for Rodio/CPAL audio backend
