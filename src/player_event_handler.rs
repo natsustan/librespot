@@ -50,6 +50,7 @@ impl EventHandler {
                                     UniqueFields::Track {
                                         artists,
                                         album,
+                                        album_id,
                                         album_artists,
                                         popularity,
                                         number,
@@ -67,6 +68,7 @@ impl EventHandler {
                                         );
                                         env_vars.insert("ALBUM_ARTISTS", album_artists.join("\n"));
                                         env_vars.insert("ALBUM", album);
+                                        env_vars.insert("ALBUM_ID", album_id.to_id());
                                         env_vars.insert("POPULARITY", popularity.to_string());
                                         env_vars.insert("NUMBER", number.to_string());
                                         env_vars.insert("DISC_NUMBER", disc_number.to_string());
