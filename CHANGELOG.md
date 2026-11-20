@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [connect] Add `PlaybackSnapshot::playing_on`, a position that keeps advancing until the restore is applied
 - [connect] Add `PlaybackSnapshot::track_uri`, the current track of a retained snapshot
 - [docs] Document Android NDK context initialization requirement for Rodio/CPAL audio backend
 - [core] Add `Cache::with_memory_credentials` to keep credentials in memory instead of a file, for applications that store them in their own protected store
