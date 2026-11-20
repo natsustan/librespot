@@ -1107,14 +1107,16 @@ impl PlayerTrackLoader {
 
             let stream_loader_controller = encrypted_file.get_stream_loader_controller().ok()?;
 
-            // Not all audio files are encrypted. If we can't get a key, try loading the track
-            // without decryption. If the file was encrypted after all, the decoder will fail
-            // parsing and bail out, so we should be safe from outputting ear-piercing noise.
+            // Nanyin patch: without its key a track cannot play. Upstream goes on
+            // without decryption, trusting the decoder to reject the encrypted
+            // bytes; the MP3 demuxer instead skips "junk" through the whole file,
+            // holding this thread (and Spirc's shutdown, which joins it) for most
+            // of a minute. A key fails mostly because the session just dropped.
             let key = match self.session.audio_key().request(track_id, file_id).await {
                 Ok(key) => Some(key),
                 Err(e) => {
-                    warn!("Unable to load key, continuing without decryption: {e}");
-                    None
+                    error!("Unable to load key for <{}>: {e}", audio_item.name);
+                    return None;
                 }
             };
 

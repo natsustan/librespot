@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- [playback] A track whose audio key cannot be fetched fails to load instead of being decoded undecrypted; the MP3 demuxer skipped "junk" through the whole encrypted file, holding the player thread for most of a minute
 - [connect] Picking a track in a list plays that track: an empty `track_uri` (or `track_uid`) sent next to the one that identifies the track is ignored, instead of failing to resolve and playing the first track of the context
 
 ### Added
